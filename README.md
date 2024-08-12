@@ -1,2 +1,4 @@
-# SQL_para_Big_Data_Ecossistema_Hadoop_com_Hive_e_Impala
-Curso SQL para Big Data: Ecossistema Hadoop com Hive e Impala
+# SQL para Big Data: Ecossistema Hadoop com Hive e Impala 🧑🏻‍💻🎲👽⚙️🐍🤖🤯☁️💻
+## Curso SQL para Big Data: Ecossistema Hadoop com Hive e Impala
+### 💥 Os temas abordados durante o curso foram: 🚀
+- [Seção 01 - Introdução]()
