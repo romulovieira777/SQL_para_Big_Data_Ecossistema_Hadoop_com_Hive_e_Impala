@@ -1,0 +1,60 @@
+hdfs dfs -mkdir user/cloudera/locacao
+cd /home/cloudera/Downloads
+hdfs dfs -put *csv /user/cloudera/locacao
+hdfs dfs /user/cloudera/locacao
+hdfs dfs -cat /user/cloudera/locacao/clientes.csv
+#################################################
+beeline
+jdbc:hive2://
+CREATE DATABASE teste;
+SHOW DATABASES;
+DROP DATABASE teste cascade;
+CREATE DATABASE locacao;
+SHOW DATABASES;
+USE locacao;
+CREATE EXTERNAL TABLE CLIENTES (
+  idcliente   INT
+ , cnh      STRING
+ , cpf      STRING
+ , validadecnh  DATE
+ , nome      STRING
+ , datacadastro  DATE
+ , datanascimento DATE
+ , telefone    STRING
+ , status     STRING
+)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORES AS TEXTFILE;
+LOAD DATA INPATH '/user/cloudera/locacao/clientes.csv' INTO TABLE CLIENTES;
+SELECT * FROM CLIENTES;
+CREATE EXTERNAL TABLE VEICULOS (
+  idveiculo   INT
+ , dataaquisicao DATE
+ , ano      INT
+ , placa     STRING
+ , status    STRING
+ , diaria    DOUBLE
+)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORES AS TEXTFILE;
+LOAD DATA INPATH '/user/cloudera/locacao/veiculos.csv' INTO TABLE VEICULOS;
+SELECT * FROM VEICULOS;
+CREATE EXTERNAL TABLE DESPACHANTES (
+  iddespachante INT
+ , nome     STRING
+ , status    STRING
+ , filial    STRING
+)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORES AS TEXTFILE;
+LOAD DATA INPATH '/user/cloudera/locacao/despachantes.csv' INTO TABLE DESPACHANTES;
+SELECT * FROM DESPACHANTES;
+CREATE EXTERNAL TABLE LOCACAO (
+  idlocacao   INT
+ , idcliente   INT
+ , iddespachante INT
+ , idveiculo   INT
+ , datalocacao  DATE
+ , dataentrega  DATE
+ , total     DOUBLE
+)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORES AS TEXTFILE;
+LOAD DATA INPATH '/user/cloudera/locacao/locacao.csv' INTO TABLE LOCACAO;
+SELECT * FROM LOCACAO;
